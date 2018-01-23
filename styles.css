@@ -8,12 +8,31 @@ html {
 
 h1 {
   text-align: center;
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', serif, Arial;
+  text-shadow: 4px 4px 4px #aaa;
+  font-size: 3rem;
+  margin: 2rem .5rem .5rem .5rem;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Cinzel', serif, Arial;
+  text-shadow: 4px 4px 4px #aaa;
+  font-size: 2.2rem;
+  margin: 1rem .5rem 2rem .5rem;
+
+}
+
+
+.player-list {
+  text-align: center;
+  font-family: 'Cinzel', serif, Arial;
+  text-shadow: 4px 4px 4px #aaa;
+  font-size: 1.5rem;
 }
 
 .addPlayer {
   text-align: center;
-
 }
 
 .input-text {
