@@ -34,24 +34,23 @@ function getNameFromForm() {
 }
 
 function injectable(name) {
-  console.log("INJECTING: " + name);
-
   var player = `<div class="player-list">
     <h1 class="name">${name}</h1>
     <button type="button" class="remove btn btn-outline-danger">DELETE</button>
   </div>`;
   playersContainer.innerHTML += player;
-  document.querySelector(".remove").addEventListener("click", () => {
-    fetch(removeUrl, {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json"
-      }),
-      body: JSON.stringify({ player: name })
-    })
-      .then(response => response.json())
-      .then(response => response.message);
-  });
+  console.log("INJECTED?: " + name);
+  // document.querySelector(".remove").addEventListener("click", () => {
+  //   fetch(removeUrl, {
+  //     method: "POST",
+  //     headers: new Headers({
+  //       "Content-Type": "application/json"
+  //     }),
+  //     body: JSON.stringify({ player: name })
+  //   })
+  //     .then(response => response.json())
+  //     .then(response => response.message);
+  // });
 }
 
 function postToServer() {
@@ -75,6 +74,7 @@ function getFromServer() {
     .then(res => res.json())
     .then(res => {
       console.log(res);
+      playersContainer.innerHTML = "";
       res.map(item => {
         console.log("AHHH" + item);
         injectable(item.player);
