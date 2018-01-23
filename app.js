@@ -9,49 +9,75 @@
 //name
 //order in queue
 //remove button ... onClick, remove from page;
-const getUrl = 'https://missile-alert-server.herokuapp.com/'
-const postUrl = 'https://missile-alert-server.herokuapp.com/players'
+const getUrl = "https://missile-alert-server.herokuapp.com/players";
+const postUrl = "https://missile-alert-server.herokuapp.com/players";
+const removeUrl = "https://missile-alert-server.herokuapp.com/remove/";
+console.log("WHAT IS HAPPENING");
+getFromServer();
 
-getFromServer()
+let playersContainer = document.querySelector(".player-list");
 
-let playersContainer = document.querySelector('.player-list')
-
-document.querySelector('.add').addEventListener('click', function(event) {
-	event.preventDefault()
-	postToServer()
-})
+document.querySelector(".add").addEventListener("click", function(event) {
+  console.log("IN THE EVENT");
+  event.preventDefault();
+  postToServer();
+});
 
 function getNameFromForm() {
-	const data = new FormData(document.querySelector('form'))
-	let name = data.get('playerName')
-	return {
-		player: name
-	}
+  console.log("NAME FROM FORM");
+  const data = new FormData(document.querySelector("form"));
+  let name = data.get("player");
+  console.log(name);
+  return {
+    player: name
+  };
 }
 
 function injectable(name) {
-	var player = `<div class="">
+  console.log("INJECTING: " + name);
+
+  var player = `<div class="player-list">
     <h1 class="name">${name}</h1>
     <button type="button" class="remove btn btn-outline-danger">DELETE</button>
-  </div>`
-	playersContainer.appendChild(player)
+  </div>`;
+  playersContainer.innerHTML += player;
+  document.querySelector(".remove").addEventListener("click", () => {
+    fetch(removeUrl, {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ player: name })
+    })
+      .then(response => response.json())
+      .then(response => response.message);
+  });
 }
 
 function postToServer() {
-	return fetch(postUrl, {
-		method: 'POST',
-		headers: new Headers({
-			'Content-Type': 'application/json'
-		}),
-		body: JSON.stringify(getNameFromForm())
-	})
-		.then(res => res.json())
-		.then(res => res.message)
-		.catch(console.error)
+  console.log("POSTING");
+  fetch(postUrl, {
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/json"
+    }),
+    body: JSON.stringify(getNameFromForm())
+  })
+    .then(res => res.json())
+    .then(res => res.message)
+    .catch(console.error);
+  getFromServer();
 }
 
 function getFromServer() {
-	return fetch(getUrl)
-		.then(res => res.json())
-		.then(res => injectable(res.player))
+  console.log("GETTING");
+  return fetch(getUrl)
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      res.map(item => {
+        console.log("AHHH" + item);
+        injectable(item.player);
+      });
+    });
 }
