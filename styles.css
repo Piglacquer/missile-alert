@@ -20,7 +20,6 @@ h2 {
   text-shadow: 4px 4px 4px #aaa;
   font-size: 2.2rem;
   margin: 1rem .5rem 2rem .5rem;
-
 }
 
 
@@ -29,6 +28,8 @@ h2 {
   font-family: 'Cinzel', serif, Arial;
   text-shadow: 4px 4px 4px #aaa;
   font-size: 1.5rem;
+  color: FFAB31;
+  paddin: .5 rem;
 }
 
 .addPlayer {
@@ -109,7 +110,7 @@ h2 {
 .btn-outline-danger {
   color: #d9534f;
   background-image: none;
-  background-color: transparent;
+  background-color: white;
   border-color: #d9534f;
 }
 
