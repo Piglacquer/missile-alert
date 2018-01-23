@@ -1,25 +1,31 @@
-h1 {}
+html {
+  background: url(background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
-/* form class */
+h1 {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+}
 
 .addPlayer {
+  text-align: center;
+
+}
+
+.input-text {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
   display: inline-block;
   width: auto;
   vertical-align: middle;
+  width: 40vw;
 }
 
-/* button class */
-
-.add {}
-
-/* button class */
-
-.remove {}
-
-.form-control-lg {}
 
 .btn {
   padding: 0.25rem 0.5rem;
@@ -27,7 +33,7 @@ h1 {}
   border-radius: 0.2rem;
   display: inline-block;
   font-weight: normal;
-  line-height: 1.25;
+  line-height: 2.5;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -55,7 +61,7 @@ h1 {}
 .btn-outline-success {
   color: #5cb85c;
   background-image: none;
-  background-color: transparent;
+  background-color: white;
   border-color: #5cb85c;
 }
 
